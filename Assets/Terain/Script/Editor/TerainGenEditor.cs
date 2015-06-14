@@ -1,26 +1,29 @@
 using UnityEngine;
 using UnityEditor;
 
-[CanEditMultipleObjects]
-[CustomEditor(typeof(TerainGen))]
-public class TerainGenEditor : Editor {
 
-	//private string[] options = new string[] {"Test 1", "Test 2", "Test 3"};
-	//private int index = 0;
+namespace Generator {
+	[CanEditMultipleObjects]
+	[CustomEditor(typeof(BaseGenarator),true)]
+	public class TerainGenEditor : Editor {
 
-	public override void OnInspectorGUI () {
-		//index = EditorGUILayout.Popup(index, options);
-		//EditorGUILayout.LabelField ("Some help", "Some other text");
+		//private string[] options = new string[] {"Test 1", "Test 2", "Test 3"};
+		//private int index = 0;
 
-		if(GUILayout.Button("Generate")) {
-			Object[] terains = targets;
-			for (int i = 0; i < terains.Length; i++) {
-				TerainGen terain = (TerainGen)terains[i];
-				terain.Generate();
+		public override void OnInspectorGUI () {
+			//index = EditorGUILayout.Popup(index, options);
+			//EditorGUILayout.LabelField ("Some help", "Some other text");
+
+			if(GUILayout.Button("Generate")) {
+				Object[] terains = targets;
+				for (int i = 0; i < terains.Length; i++) {
+					BaseGenarator terain = (BaseGenarator)terains[i];
+					terain.Generate();
+				}
 			}
+			//target.speed = EditorGUILayout.Slider ("Speed", target.speed, 0, 100);
+			DrawDefaultInspector ();
 		}
-		//target.speed = EditorGUILayout.Slider ("Speed", target.speed, 0, 100);
-		DrawDefaultInspector ();
 	}
 }
 
